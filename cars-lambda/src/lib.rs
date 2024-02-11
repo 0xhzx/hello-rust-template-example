@@ -50,7 +50,7 @@ pub fn calculate(filter_value: f64) -> Result<DataFrame, PolarsError> {
         .lazy()
         // add filter
         .filter(col("price").gt(lit(filter_value)))
-        .groupby(vec![col("brand")])
+        .group_by(vec![col("brand")])
         .agg(&[
             col("price").mean().alias("average_price"),
             col("year").mean().alias("average_year"),
